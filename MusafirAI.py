@@ -1,5 +1,6 @@
 import streamlit as st
 import os
+import nltk
 import time
 from datetime import datetime, timedelta
 from typing import Dict, List
@@ -15,7 +16,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 os.makedirs("vector_store", exist_ok=True)
-
+os.makedirs("travel_documents", exist_ok=True)
+nltk.download('punkt', quiet=True)
 st.write("Environment Variables:")
 st.write(f"COHERE_API_KEY exists: {os.getenv('COHERE_API_KEY') is not None}")
 st.write(f"GEMINI_API_KEY exists: {os.getenv('GEMINI_API_KEY') is not None}")
