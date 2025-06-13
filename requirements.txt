@@ -14,4 +14,4 @@ faiss-cpu==1.7.4
 PyPDF2==3.0.1
 onnxruntime>=1.15.1
 transformers==4.30.0
-sentencepiece
+sentence-transformers>=2.2.2
