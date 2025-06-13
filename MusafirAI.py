@@ -1,6 +1,5 @@
 import streamlit as st
 import os
-import nltk
 import time
 from datetime import datetime, timedelta
 from typing import Dict, List
