@@ -26,6 +26,22 @@ st.set_page_config(
 os.makedirs("vector_store", exist_ok=True)
 os.makedirs("travel_documents", exist_ok=True)
 nltk.download('punkt', quiet=True)
+
+st.subheader("Environment Diagnostics")
+
+try:
+    import torch
+    st.success(f"PyTorch version: {torch.__version__}")
+    st.success(f"CUDA available: {torch.cuda.is_available()}")
+except ImportError:
+    st.error("PyTorch not installed!")
+
+try:
+    from sentence_transformers import __version__ as st_version
+    st.success(f"Sentence Transformers version: {st_version}")
+except ImportError:
+    st.error("Sentence Transformers not installed!")
+
 st.write("Environment Variables:")
 st.write(f"COHERE_API_KEY exists: {os.getenv('COHERE_API_KEY') is not None}")
 st.write(f"GEMINI_API_KEY exists: {os.getenv('GEMINI_API_KEY') is not None}")
