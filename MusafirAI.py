@@ -24,7 +24,6 @@ st.set_page_config(
 
 os.makedirs("vector_store", exist_ok=True)
 os.makedirs("travel_documents", exist_ok=True)
-nltk.download('punkt', quiet=True)
 
 st.write("Environment Variables:")
 st.write(f"COHERE_API_KEY exists: {os.getenv('COHERE_API_KEY') is not None}")
