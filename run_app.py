@@ -248,15 +248,15 @@ GEMINI_API_KEY="AVaHvSiqrmLl235Ox7u551hiuhEECbQqK0XRMhlD"
             print("🆕 Creating new vector store")
             # Add your document loading and processing logic here
             # Example:
-            # from langchain.document_loaders import DirectoryLoader
-            # loader = DirectoryLoader('travel_docs/', glob="*.pdf")
-            # documents = loader.load()
-            # vector_store = FAISS.from_documents(documents, embeddings)
-            # vector_store.save_local(vector_store_path)
-            # For now we'll create an empty index
-            from langchain.schema import Document
-            vector_store = FAISS.from_documents([Document(page_content="")], embeddings)
+            from langchain.document_loaders import DirectoryLoader
+            loader = DirectoryLoader('travel_docs/', glob="*.pdf")
+            documents = loader.load()
+            vector_store = FAISS.from_documents(documents, embeddings)
             vector_store.save_local(vector_store_path)
+            # For now we'll create an empty index
+            # from langchain.schema import Document
+            # vector_store = FAISS.from_documents([Document(page_content="")], embeddings)
+            # vector_store.save_local(vector_store_path)
         
         print("⚡ Initializing LangChain components...")
         self.retriever = vector_store.as_retriever()
