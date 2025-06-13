@@ -2,7 +2,7 @@ import os
 import pickle
 from typing import List, Optional
 from langchain.vectorstores import Chroma, FAISS
-from langchain.embeddings import SentenceTransformerEmbeddings
+from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.schema import Document
 from document_loader import TravelDocumentLoader
 
@@ -12,7 +12,7 @@ class VectorStoreManager:
     def __init__(self, store_type: str = "chroma", persist_directory: str = "vectorstore"):
         self.store_type = store_type.lower()
         self.persist_directory = persist_directory
-        self.embeddings = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
+        self.embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
         self.vector_store = None
         self.document_loader = TravelDocumentLoader()
         
