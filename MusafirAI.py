@@ -15,13 +15,6 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
-os.makedirs("vector_store", exist_ok=True)
-os.makedirs("travel_documents", exist_ok=True)
-nltk.download('punkt', quiet=True)
-st.write("Environment Variables:")
-st.write(f"COHERE_API_KEY exists: {os.getenv('COHERE_API_KEY') is not None}")
-st.write(f"GEMINI_API_KEY exists: {os.getenv('GEMINI_API_KEY') is not None}")
-
 # Page configuration
 st.set_page_config(
     page_title="MusafirAI - RAG-Powered Travel Planner",
@@ -29,6 +22,13 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
+os.makedirs("vector_store", exist_ok=True)
+os.makedirs("travel_documents", exist_ok=True)
+nltk.download('punkt', quiet=True)
+st.write("Environment Variables:")
+st.write(f"COHERE_API_KEY exists: {os.getenv('COHERE_API_KEY') is not None}")
+st.write(f"GEMINI_API_KEY exists: {os.getenv('GEMINI_API_KEY') is not None}")
 
 # Custom CSS
 st.markdown("""
