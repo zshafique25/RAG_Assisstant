@@ -27,10 +27,6 @@ os.makedirs("vector_store", exist_ok=True)
 os.makedirs("travel_documents", exist_ok=True)
 nltk.download('punkt', quiet=True)
 
-st.subheader("Embedding System Status")
-st.write(f"Embedding model: {embeddings.model_name}")
-st.write(f"Model dimensions: {embeddings.client.get_sentence_embedding_dimension()}")
-
 st.write("Environment Variables:")
 st.write(f"COHERE_API_KEY exists: {os.getenv('COHERE_API_KEY') is not None}")
 st.write(f"GEMINI_API_KEY exists: {os.getenv('GEMINI_API_KEY') is not None}")
