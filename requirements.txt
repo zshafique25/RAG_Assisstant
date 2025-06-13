@@ -1,3 +1,8 @@
+--upgrade pip
+rich==14.0.0
+markdown-it-py==3.0.0
+mdurl==0.1.2
+Pygments==2.19.1
 streamlit==1.28.1
 langchain==0.0.340
 langchain-community==0.0.1
