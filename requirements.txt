@@ -15,6 +15,5 @@ faiss-cpu==1.7.4
 PyPDF2==3.0.1
 onnxruntime>=1.15.1
 torch==2.0.1
-sentence-transformers==2.2.2
 transformers==4.30.0
 
