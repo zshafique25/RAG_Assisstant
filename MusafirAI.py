@@ -14,6 +14,10 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
+st.write("Environment Variables:")
+st.write(f"COHERE_API_KEY exists: {os.getenv('COHERE_API_KEY') is not None}")
+st.write(f"GEMINI_API_KEY exists: {os.getenv('GEMINI_API_KEY') is not None}")
+
 # Page configuration
 st.set_page_config(
     page_title="MusafirAI - RAG-Powered Travel Planner",
