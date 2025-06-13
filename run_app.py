@@ -216,23 +216,58 @@ GEMINI_API_KEY="AVaHvSiqrmLl235Ox7u551hiuhEECbQqK0XRMhlD"
                 sys.exit(1)
     
     def initialize_rag_system(self):
-        """Initialize the RAG system components."""
-        print("\n🤖 Initializing RAG system...")
-        
+    """Initialize the RAG system components with proper embeddings."""
+    print("\n🤖 Initializing RAG system...")
+    
+    try:
+        # Initialize embeddings with fallback
         try:
-            # Import and test the RAG system
-            from rag_system import test_rag_system
-            
-            print("📚 Setting up vector database...")
-            print("🔍 Loading travel documents...")
-            print("⚡ Initializing LangChain components...")
-            
-            # Note: The actual initialization happens when the Streamlit app starts
-            print("✅ RAG system ready for initialization")
-            
-        except Exception as e:
-            print(f"⚠️  Warning: Could not pre-initialize RAG system: {e}")
-            print("💡 The system will initialize when the app starts")
+            from langchain.embeddings import HuggingFaceEmbeddings
+            embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+            print("✅ Using HuggingFace embeddings")
+        except ImportError:
+            try:
+                from langchain.embeddings import CohereEmbeddings
+                embeddings = CohereEmbeddings(cohere_api_key=os.getenv("COHERE_API_KEY"))
+                print("⚠️ Using Cohere embeddings fallback")
+            except ImportError:
+                print("❌ Embeddings system failed to initialize")
+                raise
+
+        print("📚 Setting up vector database...")
+        print("🔍 Loading travel documents...")
+        
+        # Initialize vector store (FAISS example)
+        from langchain.vectorstores import FAISS
+        vector_store_path = "faiss_index"
+        
+        if os.path.exists(vector_store_path):
+            print("💾 Loading existing vector store")
+            vector_store = FAISS.load_local(vector_store_path, embeddings)
+        else:
+            print("🆕 Creating new vector store")
+            # Add your document loading and processing logic here
+            # Example:
+            # from langchain.document_loaders import DirectoryLoader
+            # loader = DirectoryLoader('travel_docs/', glob="*.pdf")
+            # documents = loader.load()
+            # vector_store = FAISS.from_documents(documents, embeddings)
+            # vector_store.save_local(vector_store_path)
+            # For now we'll create an empty index
+            from langchain.schema import Document
+            vector_store = FAISS.from_documents([Document(page_content="")], embeddings)
+            vector_store.save_local(vector_store_path)
+        
+        print("⚡ Initializing LangChain components...")
+        self.retriever = vector_store.as_retriever()
+        print("✅ RAG system initialized successfully")
+        
+    except Exception as e:
+        print(f"❌ Failed to initialize RAG system: {e}")
+        # Add specific error handling
+        if "Could not import sentence_transformers" in str(e):
+            print("💡 Please ensure langchain and transformers are installed")
+        raise
     
     def run_streamlit_app(self):
         """Launch the Streamlit application."""
