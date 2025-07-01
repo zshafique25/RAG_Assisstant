@@ -9,6 +9,14 @@ MusafirAI is a Retrieval-Augmented Generation (RAG) powered travel assistant tha
 
 ![Capture1](https://github.com/user-attachments/assets/d3e8bbf4-43aa-45ef-a3de-c6d37636049d)
 
+## System Architecture
+
+#### Component Architecture
+![deepseek_mermaid_20250701_b400eb](https://github.com/user-attachments/assets/600a0fbe-3af6-4b6f-829e-3cbde742708a)
+
+#### Workflow Sequence
+![deepseek_mermaid_20250701_8eb6b7](https://github.com/user-attachments/assets/8ff53895-1f03-476d-8263-45bd81a25d90)
+
 ## Features
 
 - 🗺️ **Intelligent Itinerary Generation**: Create day-by-day travel plans based on user preferences
@@ -144,6 +152,3 @@ Edit prompt template in `rag_system.py` to change output format
 
 ## License
 Distributed under the MIT License. See `LICENSE` for more information.
-
-## Contact
-**Project Link**: [https://github.com/zshafique25/RAG_Assisstant](https://github.com/zshafique25/RAG_Assisstant)
